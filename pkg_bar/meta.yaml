@@ -1,0 +1,16 @@
+package:
+  name: pkg
+  version: 1.0
+
+build:
+  number: 99
+  features:
+    - bar
+
+requirements:
+  run:
+    - bar
+
+test:
+  commands:
+    - conda inspect linkages $PKG_NAME

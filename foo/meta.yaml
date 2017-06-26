@@ -1,0 +1,17 @@
+{% set version = '1.0' %}
+
+package:
+  name: foo
+  version: {{version}}
+
+build:
+  number: 99
+  script:
+    - mkdir -p $PREFIX/bin
+    - touch $PREFIX/bin/null
+  track_features:
+    - foo
+
+test:
+  commands:
+    - conda inspect linkages $PKG_NAME

@@ -1,0 +1,19 @@
+package:
+  name: frontend
+  version: 1.0
+
+build:
+  number: 99
+  script:
+    - mkdir -p $PREFIX/lib
+    - echo 'nothing' >$PREFIX/lib/libdummy.so
+
+requirements:
+  build:
+    - pkg
+  run:
+    - pkg
+
+test:
+  commands:
+    - conda inspect linkages $PKG_NAME

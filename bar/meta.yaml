@@ -1,0 +1,15 @@
+package:
+  name: bar
+  version: 1.0
+
+build:
+  number: 99
+  script:
+    - mkdir -p $PREFIX/lib
+    - echo 'empty' >$PREFIX/lib/null
+  track_features:
+    - bar
+
+test:
+  commands:
+    - conda inspect linkages $PKG_NAME

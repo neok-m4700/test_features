@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+set -x
+
+#############################################
+# register custom features in features.py
+root=$(conda info --root)
+conda_build=$root/lib/python3.*/site-packages/conda_build
+if ! grep -q FEATURE_FOO $conda_build/features.py; then
+  sed -i "/'FEATURE_DEBUG',/a 'FEATURE_FOO',\n'FEATURE_BAR'," $conda_build/features.py
+fi
+#############################################
+
+OPTS+=(--old-build-string)
+
+conda build ${OPTS[@]} foo bar pkg_foo pkg_bar
+FEATURE_FOO=1 conda-build ${OPTS[@]} frontend
+FEATURE_BAR=1 conda-build ${OPTS[@]} frontend
